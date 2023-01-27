@@ -1,130 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center" >
+    <div class="container d-flex align-items-center justify-content-between">
+      <img src="assets/img/D-lumière3.png" alt="" style="border-radius: 5%; width: 30vh; height: 10vh;">
+      <div class="logo">
+        <h1 class="text"><a href="index.html"><span style="color: white;">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <title>Document</title>
-</head>
+            </span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
 
-<body>
-    <div class="container mt-3 table-dark">
-        <table class="table">
-            <thead>
-                <th>Sno</th>
-                <th>Name</th>
-                <th>Roll No</th>
-                <th>Section</th>
-                <th>Gender</th>
-            </thead>
-            <tbody id="tbody1"></tbody>
-        </table>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero" style="color: white;">Accueil</a></li>
+          <li><a class="nav-link scrollto" href="#about" style="color: white;">A propos</a></li>
+          <!--<li><a class="nav-link scrollto" href="#idServices" style="color: white;">Services</a></li>
+           <li><a class="nav-link scrollto" href="#services">Services</a></li>
+         <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+        -->
+          <li><a class="nav-link scrollto" href="#portfolio" style="color: white;">Produits</a></li>
+
+          <li><a class="nav-link scrollto" href="#contact" style="color: white;">Contact</a></li>
+          <li><a class="getstarted scrollto" href="#about" style="color: white;">Commencer</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
     </div>
-
-    <script type="module">
-        //----------fillign table----------//
-        var stdNo = 0;
-
-
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBGXfuEogZqJN7HAWra0HLfUCTGJv5FBYI",
-            authDomain: "firbase2-77e95.firebaseapp.com",
-            projectId: "firbase2-77e95",
-            storageBucket: "firbase2-77e95.appspot.com",
-            messagingSenderId: "593724455882",
-            appId: "1:593724455882:web:22b05ead541e73e0966d33",
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-        import {
-            getDatabase,
-            ref,
-            onValue,
-            child,
-            get,
-        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
-        const db = getDatabase();
-
-        //------------get all data ------------//
-
-        function getAllDataOnce() {
-            const dbref = ref(db);
-            get(child(dbref, "Thedatas")).then((snopshot) => {
-                var myalldatas = [];
-                snopshot.forEach((childsnopshot) => {
-                    myalldatas.push(childsnopshot.val());
-                });
-
-            });
-        }
-
-        function getAllDataRealtime() {
-            const dbref = ref(db, "Thedatas");
-            onValue(dbref, (snopshot) => {
-                var myalldatas = [];
-                snopshot.forEach((childsnopshot) => {
-                    myalldatas.push(childsnopshot.val());
-                });
-
-                myalldatas.forEach((k) => {
-                    document.getElementById('createAllproduct').innerHTML =
-                        `
-            <tr>
-                                        <td>
-                                            <img alt="..."
-                                                src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                                                class="avatar avatar-sm rounded-circle me-">
-                                            <a class="text-heading font-semibold" href="#">
-                                                ${k.Genboxtextarea}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            Feb 15, 2021
-                                        </td>
-                                        <td>
-                                            <img alt="..."
-                                                src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                                                class="avatar avatar-xs rounded-circle me-2">
-                                            <a class="text-heading font-semibold" href="#">
-                                                Dribbble
-                                            </a>
-                                        </td>
-                                        <td>
-                                            $3.500
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-lg badge-dot">
-                                                <i class="bg-success"></i>Scheduled
-                                            </span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">Mise à jour</a>
-                                            <button type="button"
-                                                class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-            `
-                    console.log(k.Genboxtextarea)
-                })
-            });
-        }
-
-        window.onload = getAllDataRealtime;
-    </script>
-</body>
-
-</html>
+  </header><!-- End Header -->
